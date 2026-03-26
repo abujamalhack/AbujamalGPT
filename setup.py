@@ -1,14 +1,14 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="hacxgpt",
+    name="abujamalgpt",
     version="2.1.0",
     description="Advanced Uncensored AI Terminal Interface",
-    author="BlackTechX",
+    author="Abu Jamal",
     packages=find_packages(),
     include_package_data=True,
     package_data={
-        "hacxgpt": ["providers.json", "prompts/*.md"],
+        "abujamalgpt": ["providers.json", "prompts/*.md"],
     },
     install_requires=[
         "rich",
@@ -21,9 +21,8 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "hacxgpt=hacxgpt.main:main",
+            "abujamalgpt=abujamalgpt.main:main",
         ],
     },
     python_requires=">=3.8",
 )
-
