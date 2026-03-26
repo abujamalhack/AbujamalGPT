@@ -1,4 +1,3 @@
-
 import os
 import time
 from rich.console import Console
@@ -27,7 +26,7 @@ class UI:
             'prompt': 'ansiyellow bold',
         })
         # Initialize session with history
-        self.session = PromptSession(history=FileHistory('.hacx_history'))
+        self.session = PromptSession(history=FileHistory('.abujamalgpt_history'))
     
     def clear(self):
         from ..utils.system import clear_screen
@@ -44,7 +43,7 @@ class UI:
         
         table.add_row("[1]", "Initialize Uplink [dim](Start Chatting)[/]")
         table.add_row("[2]", "Security Keys [dim](Configure API)[/]")
-        table.add_row("[3]", "System Manifesto [dim](About HacxGPT)[/]")
+        table.add_row("[3]", "System Manifesto [dim](About AbujamalGPT)[/]")
         table.add_row("[4]", "System Update [dim](Check latest version)[/]")
         table.add_row("[5]", "Terminate Session [dim](Exit)[/]")
         
@@ -148,7 +147,7 @@ class UI:
                     ))
                 
                 if display_text:
-                    clean_display = display_text.replace("[HacxGPT]:", "").replace("[CODE]:", "").strip()
+                    clean_display = display_text.replace("[AbujamalGPT]:", "").replace("[CODE]:", "").strip()
                     ui_elements.append(Markdown(clean_display, code_theme=Config.CODE_THEME))
                 
                 if not ui_elements:
@@ -176,7 +175,7 @@ class UI:
                 padding=(1, 2)
             ))
 
-        clean_response = final_response.replace("[HacxGPT]:", "").replace("[CODE]:", "").strip()
+        clean_response = final_response.replace("[AbujamalGPT]:", "").replace("[CODE]:", "").strip()
         md = Markdown(clean_response, code_theme=Config.CODE_THEME)
         self.console.print(md)
         self.console.print(Rule(style="dim bright_blue"))
@@ -291,4 +290,3 @@ class UI:
                 else:
                     self.console.print(f"[bold red]✗ Clipboard failed. Please install xclip/xsel (Linux).[/]")
                 break
-
