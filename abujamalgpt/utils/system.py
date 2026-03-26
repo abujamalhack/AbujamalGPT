@@ -1,4 +1,3 @@
-
 import sys
 import subprocess
 import time
@@ -76,4 +75,3 @@ def copy_to_clipboard(text: str) -> bool:
     except Exception:
         # This occurs if pyperclip can't find a backend
         return False
-
