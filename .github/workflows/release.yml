@@ -12,7 +12,7 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
-    if: github.repository == 'HacxGPT-Official/HacxGPT-CLI'
+    if: github.repository == 'abujamalhack/AbujamalGPT'
     steps:
       - uses: actions/checkout@v4
       
@@ -28,7 +28,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.version.outputs.tag }}
-          name: HacxGPT ${{ steps.version.outputs.tag }}
+          name: AbujamalGPT ${{ steps.version.outputs.tag }}
           body: |
             ### Release Notes
             ${{ steps.version.outputs.notes }}
