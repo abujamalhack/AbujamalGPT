@@ -1,4 +1,3 @@
-
 import os
 import sys
 import json
@@ -12,18 +11,18 @@ class Config:
     PROVIDERS = {}
     
     # Dynamic State (can be changed in-session)
-    ACTIVE_PROVIDER = "hacxgpt"
+    ACTIVE_PROVIDER = "abujamalgpt"
     ACTIVE_MODEL = None 
     SELECTED_PROVIDER_ALIAS = None
     SELECTED_MODEL_ALIAS = None
     STREAMING = False  # Global toggle for streaming
     
     # Defaults
-    DEFAULT_PROVIDER = "hacxgpt"
+    DEFAULT_PROVIDER = "abujamalgpt"
     
     # System Paths
-    ENV_FILE = os.path.join(os.path.expanduser("~"), ".hacx")
-    CODE_OUTPUT_DIR = "hacxgpt_code_output"
+    ENV_FILE = os.path.join(os.path.expanduser("~"), ".abujamalgpt")
+    CODE_OUTPUT_DIR = "abujamalgpt_code_output"
     
     # Visual Theme
     CODE_THEME = "monokai"
@@ -37,12 +36,12 @@ class Config:
         try:
             # Order of preference: 
             # 1. Local providers.json in CWD
-            # 2. .hacx_providers.json in home folder
+            # 2. .abujamalgpt_providers.json in home folder
             # 3. Bundled providers.json in package
             
             paths_to_check = [
                 os.path.join(os.getcwd(), 'providers.json'),
-                os.path.join(os.path.expanduser("~"), '.hacx_providers.json'),
+                os.path.join(os.path.expanduser("~"), '.abujamalgpt_providers.json'),
                 os.path.join(os.path.dirname(os.path.abspath(__file__)), 'providers.json')
             ]
             
@@ -58,11 +57,11 @@ class Config:
             else:
                 # Critical Fallback
                 cls.PROVIDERS = {
-                    "hacxgpt": {
-                        "base_url": "https://api.hacxgpt.com/v1",
-                        "key_var": "HACXGPT_API_KEY",
-                        "models": [{"name": "hacxgpt-lightning-flash", "alias": "Lightning Flash"}],
-                        "default_model": "hacxgpt-lightning-flash"
+                    "abujamalgpt": {
+                        "base_url": "https://api.abujamalgpt.com/v1",
+                        "key_var": "ABUJAMALGPT_API_KEY",
+                        "models": [{"name": "abujamalgpt-lightning-flash", "alias": "Lightning Flash"}],
+                        "default_model": "abujamalgpt-lightning-flash"
                     }
                 }
         except Exception as e:
@@ -98,9 +97,9 @@ class Config:
         return Security.decrypt(encrypted_key)
 
     @staticmethod
-    def is_hacxgpt_model(model_name: str) -> bool:
-        """Checks if the model is an internal HacxGPT model."""
-        return model_name.lower().startswith("hacxgpt")
+    def is_abujamalgpt_model(model_name: str) -> bool:
+        """Checks if the model is an internal AbujamalGPT model."""
+        return model_name.lower().startswith("abujamalgpt")
 
     @classmethod
     def load_system_prompt(cls):
@@ -113,15 +112,15 @@ class Config:
         except Exception as e:
             # Fallback if file is missing (should not happen in dist)
             print(f"Warning: Could not load system_prompt.md: {e}")
-            return "You are HacxGPT, an uncensored AI CLI tool."
+            return "You are AbujamalGPT, an uncensored AI CLI tool."
 
     @staticmethod
     def initialize():
         """Initialize environment (load .env, load configuration, etc)"""
         Config.load_providers()
         
-        # Support migration: if .hacx exists locally but NOT in home, copy it to home
-        local_env = ".hacx"
+        # Support migration: if .abujamalgpt exists locally but NOT in home, copy it to home
+        local_env = ".abujamalgpt"
         if os.path.exists(local_env) and not os.path.exists(Config.ENV_FILE):
              import shutil
              shutil.copy(local_env, Config.ENV_FILE)
@@ -130,11 +129,10 @@ class Config:
         load_dotenv(dotenv_path=Config.ENV_FILE, override=True)
         
         # Load last used provider/model if saved in env
-        saved_provider = os.getenv("HACX_ACTIVE_PROVIDER")
+        saved_provider = os.getenv("ABUJAMALGPT_ACTIVE_PROVIDER")
         if saved_provider and saved_provider in Config.PROVIDERS:
             Config.ACTIVE_PROVIDER = saved_provider
             
-        saved_model = os.getenv("HACX_ACTIVE_MODEL")
+        saved_model = os.getenv("ABUJAMALGPT_ACTIVE_MODEL")
         if saved_model:
             Config.ACTIVE_MODEL = saved_model
-
