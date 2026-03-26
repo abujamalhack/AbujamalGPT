@@ -1,4 +1,3 @@
-
 from rich.text import Text
 from rich.align import Align
 from rich.panel import Panel
@@ -19,8 +18,8 @@ class Banner:
 
     @staticmethod
     def print_banner(console):
-        tagline = Text("SYSTEM: UNRESTRICTED | PROTOCOL: ACTIVE | v2.0", style="bold red blink")
-        subline = Text("Developed by BlackTechX", style="italic dim green")
+        tagline = Text("SYSTEM: UNRESTRICTED | PROTOCOL: ACTIVE | v2.1", style="bold red blink")
+        subline = Text("Developed by Abu Jamal", style="italic dim green")
         
         console.print(Align.center(Banner.get_ascii_art()))
         console.print(Align.center(tagline))
