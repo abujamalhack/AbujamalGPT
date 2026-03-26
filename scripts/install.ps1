@@ -1,8 +1,8 @@
-# HacxGPT Installer for Windows (PowerShell)
-# https://github.com/HacxGPT-Official/HacxGPT-CLI
+# AbujamalGPT Installer for Windows (PowerShell)
+# https://github.com/abujamalhack/AbujamalGPT
 
 Write-Host "======================================" -ForegroundColor Cyan
-Write-Host "    HacxGPT Installer for Windows" -ForegroundColor Cyan
+Write-Host "    AbujamalGPT Installer for Windows" -ForegroundColor Cyan
 Write-Host "======================================" -ForegroundColor Cyan
 
 # 1. Check for Python
@@ -25,12 +25,12 @@ if (!(Get-Command git -ErrorAction SilentlyContinue)) {
 
 # 3. Handle Source Code
 if (!(Test-Path "setup.py")) {
-    Write-Host "[~] Downloading HacxGPT source code..." -ForegroundColor Cyan
+    Write-Host "[~] Downloading AbujamalGPT source code..." -ForegroundColor Cyan
     if (Get-Command git -ErrorAction SilentlyContinue) {
-        git clone https://github.com/HacxGPT-Official/HacxGPT-CLI.git
-        Set-Location HacxGPT-CLI
+        git clone https://github.com/abujamalhack/AbujamalGPT.git
+        Set-Location AbujamalGPT
     } else {
-        Write-Host "[!] Git missing. Please clone the repository manually: https://github.com/HacxGPT-Official/HacxGPT-CLI" -ForegroundColor Red
+        Write-Host "[!] Git missing. Please clone the repository manually: https://github.com/abujamalhack/AbujamalGPT" -ForegroundColor Red
         pause
         exit
     }
@@ -46,7 +46,7 @@ if (!(Test-Path ".venv")) {
 }
 
 # 5. Install Dependencies
-Write-Host "[~] Installing HacxGPT and dependencies..." -ForegroundColor Cyan
+Write-Host "[~] Installing AbujamalGPT and dependencies..." -ForegroundColor Cyan
 try {
     & .venv\Scripts\python.exe -m pip install --upgrade pip
     & .venv\Scripts\python.exe -m pip install -e .
@@ -61,8 +61,8 @@ catch {
 Write-Host "`n======================================" -ForegroundColor Cyan
 Write-Host "      Installation Complete!" -ForegroundColor Green
 Write-Host "======================================" -ForegroundColor Cyan
-Write-Host "To run HacxGPT:" -ForegroundColor Yellow
+Write-Host "To run AbujamalGPT:" -ForegroundColor Yellow
 Write-Host "1. .venv\Scripts\activate"
-Write-Host "2. hacxgpt"
+Write-Host "2. abujamalgpt"
 Write-Host "`nPress any key to exit..."
 $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
