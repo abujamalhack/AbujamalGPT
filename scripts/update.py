@@ -8,11 +8,11 @@ import shutil
 
 def run_update():
     print("======================================")
-    print("    HacxGPT System Updater")
+    print("    AbujamalGPT System Updater")
     print("======================================")
     
-    VERSION_URL = "https://raw.githubusercontent.com/HacxGPT-Official/HacxGPT-CLI/main/version.json"
-    ARCHIVE_URL = "https://github.com/HacxGPT-Official/HacxGPT-CLI/archive/refs/heads/main.zip"
+    VERSION_URL = "https://raw.githubusercontent.com/abujamalhack/AbujamalGPT/main/version.json"
+    ARCHIVE_URL = "https://github.com/abujamalhack/AbujamalGPT/archive/refs/heads/main.zip"
 
     # 0. Check if it's a git repository
     if os.path.exists(".git"):
@@ -46,12 +46,12 @@ def run_update():
             
             z = zipfile.ZipFile(io.BytesIO(r.content))
             
-            # The zip usually contains a folder like HacxGPT-CLI-main
+            # The zip usually contains a folder like AbujamalGPT-main
             top_folder = z.namelist()[0].split('/')[0]
             
             print(f"[~] Extracting and updating files...")
             # Extract to a temp directory first to avoid conflicts
-            temp_dir = "hacx_update_temp"
+            temp_dir = "abujamalgpt_update_temp"
             if os.path.exists(temp_dir):
                 shutil.rmtree(temp_dir)
             
@@ -60,7 +60,7 @@ def run_update():
             
             # Copy files over (Surgical update)
             # We only copy the core package and main scripts
-            items_to_update = ['hacxgpt', 'scripts', 'setup.py', 'requirements.txt', 'version.json', 'README.md']
+            items_to_update = ['abujamalgpt', 'scripts', 'setup.py', 'requirements.txt', 'version.json', 'README.md']
             
             for item in items_to_update:
                 src = os.path.join(source_path, item)
@@ -95,7 +95,7 @@ def run_update():
     print("\n======================================")
     print("      Update Complete!")
     print("======================================")
-    print("Restart HacxGPT to apply changes.")
+    print("Restart AbujamalGPT to apply changes.")
 
 if __name__ == "__main__":
     run_update()
