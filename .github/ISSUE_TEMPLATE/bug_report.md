@@ -26,7 +26,7 @@ If applicable, add screenshots to help explain your problem.
 **Environment (please complete the following information):**
  - OS: [e.g. Windows, Linux]
  - Python Version: [e.g. 3.9]
- - HacxGPT Version [e.g. 2.0.0]
+ - AbujamalGPT Version [e.g. 2.1.0]
 
 **Additional context**
 Add any other context about the problem here.
