@@ -1,4 +1,3 @@
-
 import os
 import sys
 import subprocess
@@ -8,8 +7,8 @@ from .. import __version__
 class Updater:
     """Handles checking for and applying updates from GitHub."""
     
-    REPO_URL = "https://api.github.com/repos/HacxGPT-Official/HacxGPT-CLI/releases/latest"
-    GITHUB_RAW_VERSION = "https://raw.githubusercontent.com/HacxGPT-Official/HacxGPT-CLI/main/version.json"
+    REPO_URL = "https://api.github.com/repos/abujamalhack/AbujamalGPT/releases/latest"
+    GITHUB_RAW_VERSION = "https://raw.githubusercontent.com/abujamalhack/AbujamalGPT/main/version.json"
 
     @staticmethod
     def get_remote_version():
@@ -51,7 +50,7 @@ class Updater:
                 return False, "Update script not found in scripts/update.py."
 
             subprocess.check_call([sys.executable, update_script])
-            return True, "Update successful. Please restart HacxGPT."
+            return True, "Update successful. Please restart AbujamalGPT."
         except subprocess.CalledProcessError as e:
             return False, f"Update failed during execution: {e}"
         except Exception as e:
