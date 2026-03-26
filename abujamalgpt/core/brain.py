@@ -8,21 +8,21 @@ from ..ui.interface import UI
 from .api import Client
 
 
-class HacxBrain:
+class AbujamalBrain:
     """Handles the connection to the LLM"""
 
     def __init__(self, api_key: str):
         self.api_key = api_key
         self.model = Config.get_model()
         self.system_prompt = Config.load_system_prompt()
-        self.session_dir = os.path.join(os.path.expanduser("~"), ".hacxgpt_sessions")
+        self.session_dir = os.path.join(os.path.expanduser("~"), ".abujamalgpt_sessions")
         if not os.path.exists(self.session_dir):
             os.makedirs(self.session_dir)
             
         self._init_client()
         
-        # HacxGPT models don't need the system prompt history
-        if Config.is_hacxgpt_model(self.model):
+        # AbujamalGPT models don't need the system prompt history
+        if Config.is_abujamalgpt_model(self.model):
             self.history = []
         else:
             self.history = [{"role": "system", "content": self.system_prompt}]
@@ -41,8 +41,8 @@ class HacxBrain:
                 "Accept": "application/json, text/plain, */*",
                 "Accept-Language": "en-US,en;q=0.9",
                 "Connection": "keep-alive",
-                "HTTP-Referer": "https://github.com/HacxGPT-Official/HacxGPT-CLI",
-                "X-Title": "HacxGPT-CLI"
+                "HTTP-Referer": "https://github.com/abujamalhack/AbujamalGPT",
+                "X-Title": "AbujamalGPT-CLI"
             }
         )
 
@@ -50,7 +50,7 @@ class HacxBrain:
         """Update the model being used"""
         self.model = model_name
         Config.ACTIVE_MODEL = model_name
-        # If switching between HacxGPT and normal models, a reset might be best, 
+        # If switching between AbujamalGPT and normal models, a reset might be best, 
         # but we'll try to just remove/add the system prompt if the history is fresh.
         if len(self.history) <= 1:
             self.reset()
@@ -65,7 +65,7 @@ class HacxBrain:
         self.reset() # Reset history on provider switch for safety
 
     def reset(self):
-        if Config.is_hacxgpt_model(self.model):
+        if Config.is_abujamalgpt_model(self.model):
             self.history = []
         else:
             self.history = [{"role": "system", "content": self.system_prompt}]
