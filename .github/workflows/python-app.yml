@@ -1,4 +1,4 @@
-name: HacxGPT CI
+name: AbujamalGPT CI
 
 on:
   push:
@@ -37,6 +37,6 @@ jobs:
 
     - name: Test imports
       run: |
-        python -c "import hacxgpt; print(hacxgpt.__version__)"
-        python -c "from hacxgpt.core.brain import HacxBrain"
-        python -c "from hacxgpt.utils.updater import Updater"
+        python -c "import abujamalgpt; print(abujamalgpt.__version__)"
+        python -c "from abujamalgpt.core.brain import AbujamalBrain"
+        python -c "from abujamalgpt.utils.updater import Updater"
