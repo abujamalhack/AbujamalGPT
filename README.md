@@ -1,6 +1,6 @@
 <div align="center">
 
-![AbujamalGPT logo](https://github.com/abujamalhack/AbujamalGPT/blob/main/img/AbujamalGPT.jpg)
+![AbujamalGPT logo](https://github.com/abujamalhack/AbujamalGPT/main/img/AbujamalGPT.jpg)
 
 # AbujamalGPT
 
