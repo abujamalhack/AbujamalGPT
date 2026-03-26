@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# HacxGPT Installer for Linux
-# https://github.com/HacxGPT-Official/HacxGPT-CLI
+# AbujamalGPT Installer for Linux
+# https://github.com/abujamalhack/AbujamalGPT
 
 echo "======================================"
-echo "    HacxGPT Installer Script"
+echo "    AbujamalGPT Installer Script"
 echo "======================================"
 
 # Check for Python
@@ -37,7 +37,7 @@ echo "[~] Upgrading pip..."
 pip install --upgrade pip
 
 # Install Package
-echo "[~] Installing HacxGPT..."
+echo "[~] Installing AbujamalGPT..."
 pip install -e .
 
 # Check for clipboard backend (Linux only)
@@ -55,7 +55,7 @@ echo "======================================"
 echo "      Installation Complete!"
 echo "======================================"
 echo ""
-echo "To run HacxGPT:"
+echo "To run AbujamalGPT:"
 echo "1. source .venv/bin/activate"
-echo "2. hacxgpt"
+echo "2. abujamalgpt"
 echo ""
