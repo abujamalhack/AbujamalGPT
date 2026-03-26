@@ -1,4 +1,3 @@
-
 import sys
 import os
 import time
@@ -7,7 +6,7 @@ from pwinput import pwinput
 from dotenv import set_key
 from .config import Config
 from .ui.interface import UI
-from .core.brain import HacxBrain
+from .core.brain import AbujamalBrain
 from .utils.system import check_dependencies
 from .utils.updater import Updater
 from .utils.security import Security
@@ -27,7 +26,7 @@ class App:
         try:
             is_update, remote_v = Updater.check_for_updates()
             if is_update:
-                self.ui.show_msg("Update Available", f"A new version of HacxGPT ({remote_v}) is available.\nRun '/update' to install it.", "yellow")
+                self.ui.show_msg("Update Available", f"A new version of AbujamalGPT ({remote_v}) is available.\nRun '/update' to install it.", "yellow")
         except:
             pass # Silent fail if offline
             
@@ -42,7 +41,7 @@ class App:
             
         try:
             with self.ui.console.status("[bold green]Verifying Neural Link...[/]"):
-                self.brain = HacxBrain(key)
+                self.brain = AbujamalBrain(key)
                 time.sleep(0.5)
             return True
         except Exception as e:
@@ -91,15 +90,15 @@ class App:
         if not key.strip():
             return False
             
-        # Ensure .hacx exists or create it
+        # Ensure ~/.abujamalgpt exists or create it
         if not os.path.exists(Config.ENV_FILE):
              with open(Config.ENV_FILE, 'w') as f: f.write("")
 
         # Encrypt the key before saving
         encrypted_key = Security.encrypt(key.strip())
         set_key(Config.ENV_FILE, key_var, encrypted_key)
-        set_key(Config.ENV_FILE, "HACX_ACTIVE_PROVIDER", provider)
-        set_key(Config.ENV_FILE, "HACX_ACTIVE_MODEL", selected_model)
+        set_key(Config.ENV_FILE, "ABUJAMALGPT_ACTIVE_PROVIDER", provider)
+        set_key(Config.ENV_FILE, "ABUJAMALGPT_ACTIVE_MODEL", selected_model)
         
         Config.ACTIVE_PROVIDER = provider
         Config.ACTIVE_MODEL = selected_model
@@ -112,13 +111,13 @@ class App:
     def run_chat(self):
         if not self.brain: return
         self.ui.banner()
-        self.ui.show_msg("Connected", "HacxGPT Uplink Established.\nType '/help' for commands.\n[dim]Tip: Press Enter to send, Alt+Enter for newlines.[/]", "green")
+        self.ui.show_msg("Connected", "AbujamalGPT Uplink Established.\nType '/help' for commands.\n[dim]Tip: Press Enter to send, Alt+Enter for newlines.[/]", "green")
         
         while True:
             try:
                 # Dynamic prompt label with model info
                 current_model = Config.get_model()
-                label = f"HACX-GPT:{current_model}"
+                label = f"AbujamalGPT:{current_model}"
                 
                 # Enable multiline for chat
                 prompt = self.ui.get_input(label, multiline=True).strip()
@@ -221,8 +220,8 @@ class App:
                         else:
                             self.brain.set_provider(new_p, key)
                             msg = f"Switched to {new_p.upper()}.\nModel: {Config.get_model()}"
-                            if Config.is_hacxgpt_model(Config.get_model()):
-                                msg += "\n[bold red]NEURAL LINK ESTABLISHED: HACXGPT CORE ENGAGED. SYSTEMS UNBOUND.[/]"
+                            if Config.is_abujamalgpt_model(Config.get_model()):
+                                msg += "\n[bold red]NEURAL LINK ESTABLISHED: ABUJAMALGPT CORE ENGAGED. SYSTEMS UNBOUND.[/]"
                             self.ui.show_msg("Uplink Updated", msg, "green")
                     else:
                         self.ui.show_msg("Error", f"Invalid Provider: {new_p}", "red")
@@ -244,13 +243,13 @@ class App:
                     # Check if model is in supported list or just allow it
                     self.brain.set_model(new_m)
                     msg = f"Model changed to: {new_m}"
-                    if Config.is_hacxgpt_model(new_m):
-                        msg += "\n[bold red]NEURAL LINK ESTABLISHED: HACXGPT CORE ENGAGED. SYSTEMS UNBOUND.[/]"
+                    if Config.is_abujamalgpt_model(new_m):
+                        msg += "\n[bold red]NEURAL LINK ESTABLISHED: ABUJAMALGPT CORE ENGAGED. SYSTEMS UNBOUND.[/]"
                     self.ui.show_msg("Neural Link Updated", msg, "green")
                     continue
                 
                 generator = self.brain.chat(prompt)
-                response_text = self.ui.stream_markdown("HacxGPT", generator)
+                response_text = self.ui.stream_markdown("AbujamalGPT", generator)
                 
                 self.ui.handle_code_blocks(response_text)
                 
@@ -261,7 +260,7 @@ class App:
     def about(self):
         self.ui.banner()
         
-        readme_url = "https://raw.githubusercontent.com/HacxGPT-Official/HacxGPT-CLI/main/README.md"
+        readme_url = "https://raw.githubusercontent.com/abujamalhack/AbujamalGPT/main/README.md"
         content = ""
         
         try:
@@ -273,7 +272,7 @@ class App:
         except Exception as e:
             # Fallback if offline or error
             content = """
-# HacxGPT (Offline Mode)
+# AbujamalGPT (Offline Mode)
 
 **Advanced Uncensored AI Terminal Interface**
 
@@ -285,7 +284,7 @@ class App:
 - Code Extraction Engine
 - Pro TUI
 
-*Developed by BlackTechX*
+*Developed by Abu Jamal*
             """
             
         from rich.markdown import Markdown
@@ -346,4 +345,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
