@@ -47,7 +47,7 @@
 
 Here is a glimpse of AbujamalGPT in action:
 
-![AbujamalGPT Demo Screenshot](./AbujamalGBT.jpg)
+![AbujamalGPT Demo Screenshot](./AbujamalGPT.jpg)
 
 ---
 
